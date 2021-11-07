@@ -4,19 +4,16 @@ import { ApiError } from '../../lib/api';
 import Title from '../../components/Title';
 import { getProduct, getProductIds } from '../../lib/products';
 import { useRouter } from 'next/dist/client/router';
+import Layout from '../../components/Layout';
 
 export default function ProductPage({ product }) {
   const router = useRouter();
-  console.log(router);
   const { image } = product;
-  const imageUrl = /* image.formats?.small?.url || */ image.url;
+  const imageUrl = image.url;
   const imageBlurUrl = image.formats?.thumbnail?.url || image.url;
 
   return (
-    <>
-      <Head>
-        <title>Next Plant | {product.title}</title>
-      </Head>
+    <Layout title={product.title}>
       <div className="mb-4">
         <button
           onClick={() => router.push('/')}
@@ -46,7 +43,7 @@ export default function ProductPage({ product }) {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 
