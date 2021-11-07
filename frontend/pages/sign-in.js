@@ -1,34 +1,24 @@
 import { useRouter } from 'next/dist/client/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from '../components/Button';
 import Field from '../components/Field';
 import Input from '../components/Input';
 import Layout from '../components/Layout';
 import Title from '../components/Title';
-import { fetchJson } from '../lib/api';
+import { useSignin } from '../hooks/user';
 
 export default function SignInPage() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState({ loading: false, error: false });
-  const router = useRouter();
+  const { signIn, signInError, signInLoading } = useSignin();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setStatus({ loading: true, error: false });
 
-    try {
-      await fetchJson('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      // setStatus({ loading: false, error: false });
+    const signinIsValid = await signIn(email, password);
+    if (signinIsValid) {
       router.push('/');
-    } catch (e) {
-      setStatus({ loading: false, error: 'Authentication failed! 😟' });
     }
   };
 
@@ -52,12 +42,12 @@ export default function SignInPage() {
             onChange={e => setPassword(e.target.value)}
           />
         </Field>
-        <Button type="submit" loading={status.loading}>
+        <Button type="submit" loading={signInLoading}>
           Sign in!
         </Button>
-        {status.error && (
+        {signInError && (
           <p className="bg-red-500 text-white mt-4 w-80 px-2 py-1 text-center">
-            {status.error}
+            Authentication failed! :/
           </p>
         )}
       </form>

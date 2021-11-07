@@ -16,7 +16,7 @@ async function handleLogin(req, res) {
       },
       body: JSON.stringify({ identifier: email, password }),
     });
-    console.log({ jwt, user });
+
     res
       .status(200)
       .setHeader(

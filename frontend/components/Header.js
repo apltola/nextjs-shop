@@ -1,42 +1,22 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { fetchJson } from '../lib/api';
+import { useSignOut, useUser } from '../hooks/user';
 
 export default function Header() {
-  const [user, setUser] = useState('');
+  const user = useUser();
+  const signOut = useSignOut();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const user = await fetchJson('/api/user');
-        setUser(user);
-      } catch (e) {
-        setUser(null); // not signed in
-      }
-    })();
-  }, []);
-
-  const handleLogout = async () => {
-    console.log('logout');
-    await fetchJson('/api/logout');
-    setUser(null);
-  };
+  console.log('[header] user: ', user);
 
   const renderAuth = () => {
-    switch (user) {
-      case '':
-        return null;
-      case null:
-        return (
-          <Link href="/sign-in">
-            <a className="hover:underline">Sign in</a>
-          </Link>
-        );
-      default:
-        return user ? (
-          <button onClick={handleLogout}>Logout {user.name}</button>
-        ) : null;
-    }
+    if (typeof user === 'undefined') return null;
+
+    return user ? (
+      <button onClick={signOut}>Logout {user.name}</button>
+    ) : (
+      <Link href="/sign-in">
+        <a className="hover:underline">Sign in</a>
+      </Link>
+    );
   };
 
   return (
