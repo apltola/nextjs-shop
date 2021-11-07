@@ -7,11 +7,12 @@ export default function Home({ products }) {
   return (
     <Layout title="Home">
       <main className="max-w-5xl mx-auto">
-        <Title>Products</Title>
-        <ul className="flex flex-wrap gap-3">
-          {/* <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"> */}
+        <div className="flex justify-center sm:justify-start">
+          <Title className="border">Products</Title>
+        </div>
+        <ul className="flex flex-wrap gap-4 justify-center sm:justify-start">
           {products.map(product => (
-            <li key={product.id}>
+            <li key={product.id} className="">
               <ProductCard product={product} />
             </li>
           ))}

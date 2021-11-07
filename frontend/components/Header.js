@@ -5,8 +5,6 @@ export default function Header() {
   const user = useUser();
   const signOut = useSignOut();
 
-  console.log('[header] user: ', user);
-
   const renderAuth = () => {
     if (typeof user === 'undefined') return null;
 
@@ -21,9 +19,9 @@ export default function Header() {
 
   return (
     <header className="p-4 border">
-      <nav className="flex justify-between">
+      <nav className="flex items-center justify-between">
         <Link href="/">
-          <a className="hover:underline">Home</a>
+          <a className="hover:underline font-black text-xl">Next|Plant</a>
         </Link>
         {renderAuth()}
       </nav>

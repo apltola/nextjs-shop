@@ -6,7 +6,7 @@ export default function Input({ type, name, value, onChange }) {
       value={value}
       onChange={onChange}
       autoComplete="off"
-      className="border px-2 py-1 w-80 rounded-sm"
+      className="border px-2 py-1 w-full rounded-sm"
     />
   );
 }

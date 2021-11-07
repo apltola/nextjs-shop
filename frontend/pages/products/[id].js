@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Head from 'next/head';
 import { ApiError } from '../../lib/api';
 import Title from '../../components/Title';
 import { getProduct, getProductIds } from '../../lib/products';
@@ -10,7 +9,7 @@ export default function ProductPage({ product }) {
   const router = useRouter();
   const { image } = product;
   const imageUrl = image.url;
-  const imageBlurUrl = image.formats?.thumbnail?.url || image.url;
+  const imageBlurUrl = image.formats?.small?.url || image.url;
 
   return (
     <Layout title={product.title}>

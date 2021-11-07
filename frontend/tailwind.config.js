@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         'forest-green': '#138A36',
         'green-pigment': '#16A240',
+        'rich-black': '#00171F',
       },
     },
   },

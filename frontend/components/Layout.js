@@ -11,7 +11,7 @@ export default function Layout({ title, children }) {
       )}
       <div className="min-h-screen">
         <Header />
-        <div className="py-10 px-4 max-w-6xl mx-auto">{children}</div>
+        <div className="py-10 px-2 max-w-6xl mx-auto">{children}</div>
       </div>
     </>
   );

@@ -24,33 +24,37 @@ export default function SignInPage() {
 
   return (
     <Layout title="Sign in">
-      <Title>Sign in to your account</Title>
-      <form onSubmit={handleSubmit}>
-        <Field label="Email">
-          <Input
-            type="email"
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </Field>
-        <Field label="Password">
-          <Input
-            type="password"
-            name="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-        </Field>
-        <Button type="submit" loading={signInLoading}>
-          Sign in!
-        </Button>
-        {signInError && (
-          <p className="bg-red-500 text-white mt-4 w-80 px-2 py-1 text-center">
-            Authentication failed! :/
-          </p>
-        )}
-      </form>
+      <div className="flex justify-center">
+        <div className>
+          <Title>Sign in to your account</Title>
+          <form onSubmit={handleSubmit}>
+            <Field label="Email">
+              <Input
+                type="email"
+                name="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+            </Field>
+            <Field label="Password">
+              <Input
+                type="password"
+                name="password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+              />
+            </Field>
+            <Button type="submit" loading={signInLoading}>
+              Sign in!
+            </Button>
+            {signInError && (
+              <p className="bg-red-500 text-white mt-4 w-80 px-2 py-1 text-center">
+                Authentication failed! :/
+              </p>
+            )}
+          </form>
+        </div>
+      </div>
     </Layout>
   );
 }
